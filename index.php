@@ -25,7 +25,8 @@ switch ($dbtype) {
         //mssql_select_db($dbname, $connection) or die("Could not select database" . mssql_get_last_message());
         //$query = "SELECT * from users";
 
-	$serverName = $dbhost.":".$dbport;
+$serverName = $dbhost.":".$dbport;
+	//$serverName = $dbhost;
         $connectionOptions = array(
                 "Database" => $dbname,
                 "Uid" => $dbuser,
@@ -35,7 +36,15 @@ switch ($dbtype) {
         $conn = sqlsrv_connect($serverName, $connectionOptions);
         if($conn)
                 echo "Connected!";        
-	
+        $tsql= "SELECT * from users";
+        $getResults= sqlsrv_query($conn, $tsql);
+	echo ("Reading data from table" . PHP_EOL);
+	if ($getResults == FALSE)
+    		die(FormatErrors(sqlsrv_errors()));
+	while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+    	echo ($row['user_id'] . " " . $row['username'] . PHP_EOL);
+	}
+	sqlsrv_free_stmt($getResults);	
 	break;
 }
         
