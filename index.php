@@ -21,10 +21,22 @@ switch ($dbtype) {
         break;
 
    case "mssql":
-	$connection = mssql_connect($dbhost.":".$dbport, $dbuser, $dbpwd) or die("Could not connect to SQL Server " . mssql_get_last_message());
-        mssql_select_db($dbname, $connection) or die("Could not select database" . mssql_get_last_message());
-        $query = "SELECT * from users";
-        
+	//$connection = mssql_connect($dbhost.":".$dbport, $dbuser, $dbpwd) or die("Could not connect to SQL Server " . mssql_get_last_message());
+        //mssql_select_db($dbname, $connection) or die("Could not select database" . mssql_get_last_message());
+        //$query = "SELECT * from users";
+
+	$serverName = $dbhost.":".$dbport;
+        $connectionOptions = array(
+                "Database" => $dbname,
+                "Uid" => $dbuser,
+                "PWD" => $dbpwd
+        );
+        //Establishes the connection
+        $conn = sqlsrv_connect($serverName, $connectionOptions);
+        if($conn)
+                echo "Connected!";        
+	
 	break;
+}
         
 ?>
