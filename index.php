@@ -19,30 +19,31 @@ switch ($dbtype) {
 	echo "End of the list <br>";
 	mysqli_close($connection);
         break;
-
+  
    case "mssql":
-	//$connection = mssql_connect($dbhost.":".$dbport, $dbuser, $dbpwd) or die("Could not connect to SQL Server " . mssql_get_last_message());
-        //mssql_select_db($dbname, $connection) or die("Could not select database" . mssql_get_last_message());
-        //$query = "SELECT * from users";
 
-$serverName = $dbhost.":".$dbport;
-	//$serverName = $dbhost;
+        $serverName = $dbhost.",".$dbport;
+        
         $connectionOptions = array(
                 "Database" => $dbname,
                 "Uid" => $dbuser,
-                "PWD" => $dbpwd
+                "PWD" => $dbpwd 
         );
         //Establishes the connection
         $conn = sqlsrv_connect($serverName, $connectionOptions);
-        if($conn)
-                echo "Connected!";        
+        if($conn) {
+                echo "Connected! <br>"; }
+        else {
+          echo "Connection could not be established.<br />";
+         die( print_r( sqlsrv_errors(), true));
+        }       
         $tsql= "SELECT * from users";
         $getResults= sqlsrv_query($conn, $tsql);
-	echo ("Reading data from table" . PHP_EOL);
 	if ($getResults == FALSE)
     		die(FormatErrors(sqlsrv_errors()));
+	echo "Hello All.. Here is the list of users: <br>";
 	while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
-    	echo ($row['user_id'] . " " . $row['username'] . PHP_EOL);
+    		echo "User Id: ".$row['user_id'] . " User Name: " . $row['username'] . "<br>";
 	}
 	sqlsrv_free_stmt($getResults);	
 	break;
