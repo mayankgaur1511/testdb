@@ -1,12 +1,20 @@
 <?php
-echo $dbtype = 'mysql';//getenv("DB_TYPE");
+ $dbtype = 'mssql';//getenv("DB_TYPE");
 
-exit;
-$dbhost = getenv("DB_HOST");
-$dbport = getenv("DB_PORT");
-$dbuser = getenv("DB_USER");
-$dbname = getenv("DB_NAME");
-$dbpwd = getenv("DB_PASSWORD");;
+
+ /*[‎10-‎05-‎2018 17:49] Debasish Deo: 
+$DB_HOST        = "10.244.17.144";          // Database Host Server
+//$DB_HOST      = "10.244.2.2";         // Database Host Server
+$DB_USERNAME        = "sa";             // Database Username 
+$DB_PASSWORD        = 'adminw2ksql';        // Password for the Db User
+//$DB_PASSWORD      = 'gatekeeper';         // Password for the Db User
+$DB_NAME        = "Confer_billing";     // Database1 name 
+*/
+$dbhost = '10.244.17.144';//getenv("DB_HOST");
+$dbport = '1433';//getenv("DB_PORT");
+$dbuser = 'sa';//getenv("DB_USER");
+$dbname = 'Confer_billing';//getenv("DB_NAME");
+$dbpwd = 'adminw2ksql';//getenv("DB_PASSWORD");;
 
 switch ($dbtype) {
 
