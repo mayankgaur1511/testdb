@@ -39,11 +39,13 @@ switch ($dbtype) {
         }       
         $tsql= "SELECT * from users";
         $getResults= sqlsrv_query($conn, $tsql);
-	if ($getResults == FALSE)
-    		die(FormatErrors(sqlsrv_errors()));
+	if ($getResults == FALSE){
+	die(FormatErrors(sqlsrv_errors()));}
+	else{
 	echo "Hello All.. Here is the list of users: <br>";
 	while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     		echo "User Id: ".$row['user_id'] . " User Name: " . $row['username'] . "<br>";
+	}
 	}
 	sqlsrv_free_stmt($getResults);	
 	break;
