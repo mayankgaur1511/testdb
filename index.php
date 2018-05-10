@@ -1,5 +1,5 @@
 <?php
-$dbtype = getenv("DB_TYPE");
+$dbtype = 'mysql';//getenv("DB_TYPE");
 $dbhost = getenv("DB_HOST");
 $dbport = getenv("DB_PORT");
 $dbuser = getenv("DB_USER");
