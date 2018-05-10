@@ -31,7 +31,7 @@ switch ($dbtype) {
         break;
   
    case "mssql":
-ECHO"HELLO";exit;
+ECHO"HELLO";
 
         $serverName = $dbhost.",".$dbport;
         
