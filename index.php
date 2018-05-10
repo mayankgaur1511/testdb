@@ -31,6 +31,13 @@ switch ($dbtype) {
         break;
   
    case "mssql":
+   try{
+    $this->db = new PDO ("dblib:host=$this->hostname:$this->port;dbname=$this->dbname", "$this->username", "$this->pwd");
+   echo "In side MSSQL";
+        } catch (PDOException $e) {
+	echo "Failed to get DB handle: " . $e->getMessage(); 
+            $this->logsys .= "Failed to get DB handle: " . $e->getMessage() . "\n";}
+exit;
 
         $serverName = $dbhost.",".$dbport;
         
