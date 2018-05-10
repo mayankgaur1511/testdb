@@ -34,9 +34,9 @@ switch ($dbtype) {
    
    
 			try{
-			
-			 $db=new PDO ("dblib:host=$dbhost:$dbport;dbname=$dbuser", "$dbname", "$dbpwd");
 			 echo "In side MSSQL";
+			 $db=new PDO ("dblib:host=$dbhost:$dbport;dbname=$dbuser", "$dbname", "$dbpwd");
+			
 		    
 			} catch (PDOException $e) {
 				
